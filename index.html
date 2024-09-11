@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO DO LIST</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .todo-grid, 
+        .grid{
+            display: grid;
+            grid-template-columns: 200px 150px 100px;
+            column-gap: 10px;
+            row-gap: 10px;
+            align-items: center;
+        }
+        .grid{
+            margin-bottom: 10px;
+            align-items: stretch;
+        }
+        .nameclass, .duedateclass{
+            font-size: 15px;
+            padding: 6px;
+        }
+        .addbuttonclass{
+            background-color: green;
+            color: white;
+            border: none;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .deleteclass{
+            background-color: darkred;
+            color: white;
+            border: none;
+            font-size: 15px;
+            padding: 10px 15px;
+            width: 100%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <p><h2>Todo list</h2></p>
+    <div class="grid">
+        <input type="text" placeholder="Todo name" class="todo nameclass" >
+        <input type="date" class="duedateinput duedateclass">
+        <button onclick="addTasks();" class="addbuttonclass">Add</button><br>
+    </div>
+
+    <div class="tasks todo-grid"></div>
+    <script>        
+        let myArray=[];
+        function addTasks()
+        {
+            const temp=document.querySelector('.todo');
+            let name=temp.value;
+
+            const temp1=document.querySelector('.duedateinput');
+            let duedate=temp1.value;
+
+            myArray.push({name,duedate});
+            console.log(myArray);
+            temp.value='';
+            rendertodolist();
+        }
+        function rendertodolist()
+        {
+            let todoListHtml='';
+            for(let i=0;i<myArray.length;i++)
+            {
+                let tObj=myArray[i];
+                const name=tObj.name;
+                const duedate=tObj.duedate;
+                const html=`
+                <div>  ${name} </div>
+                <div> ${duedate}  </div>
+                <div>
+                    <button onclick="
+                    myArray.splice(${i},1);
+                    rendertodolist();
+                    " class=deleteclass>Delete</button>
+                </div>`;
+                todoListHtml+=html; 
+            }
+            document.querySelector('.tasks').innerHTML=todoListHtml;
+        }
+    </script>
+</body>
+</html>

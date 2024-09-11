@@ -1,0 +1,36 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    user-select: none;
+}
+.todo-grid, 
+.grid{
+    display: grid;
+    grid-template-columns: 200px 150px 100px;
+    column-gap: 10px;
+    row-gap: 10px;
+    align-items: center;
+}
+.grid{
+    margin-bottom: 10px;
+    align-items: stretch;
+}
+.nameclass, .duedateclass{
+    font-size: 15px;
+    padding: 6px;
+}
+.addbuttonclass{
+    background-color: green;
+    color: white;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+.deleteclass{
+    background-color: darkred;
+    color: white;
+    border: none;
+    font-size: 15px;
+    padding: 10px 15px;
+    width: 100%;
+    cursor: pointer;
+}
